@@ -41,6 +41,10 @@
    - where(id={">":1, "<=":100})
 
      WHERE `id` > 1 AND `id` <= 100
+   - where() 条件包含一个 `_xor` 参数用来指定链接条件，如
+   　
+     where(id=2, age=[22, 23], _xor="OR")
+     相当于　WHERE `id` = 2 OR `age` IN (22, 23)
 
 4. **groupBy(args) -> self**
 
