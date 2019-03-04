@@ -126,6 +126,10 @@
 
     execCommand(" UPDATE user SET name='DB' WHERE id=2")
 
+15. **getLastRowId() -> int**
+    
+    获取上一步操作的新增加的主键ID
+
 操作demo如下：
 
 ```

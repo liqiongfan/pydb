@@ -44,6 +44,9 @@ class Model(object):
     """_executed_sql: the result sql executed by Db opearation"""
     _executed_sql = ""
 
+    """The last row id"""
+    _row_id = 0
+
     def __init__(self, db):
         """
         :param db: pymysql
@@ -432,6 +435,7 @@ class Model(object):
         result = self.db_object.cursor()
         data = result.execute(sql)
         self.db_object.commit()
+        self._row_id = result.lastrowid
         return data
 
     # end save()
@@ -493,6 +497,7 @@ class Model(object):
         result = self.db_object.cursor()
         data = result.execute(sql)
         self.db_object.commit()
+        self._row_id = result.lastrowid
         return data
 
     # end batchSave()
@@ -524,7 +529,14 @@ class Model(object):
         self._executed_sql = raw_sql
         data = result.execute(raw_sql)
         self.db_object.commit()
+        self._row_id = result.lastrowid
         return data
 
     # end execCommand()
+
+    def getLastRowId(self):
+        return self._row_id
+
+    # end getLastRowId()
+
 # end class Model
